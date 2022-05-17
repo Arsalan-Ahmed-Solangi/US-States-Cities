@@ -37,9 +37,11 @@
             if(mysqli_num_rows($result) > 0)
             {
                 echo json_encode(array('data'=>mysqli_fetch_all($result,MYSQLI_ASSOC),'status'=>200));
+                die;
             }else
             {
                 echo json_encode(array("message"=>"No User Found","status"=>400));
+                die;
             }
 
 
@@ -51,9 +53,11 @@
             if(mysqli_num_rows($result) > 0)
             {
                 echo json_encode(array('data'=>mysqli_fetch_all($result,MYSQLI_ASSOC),'status'=>200));
+                die;
             }else
             {
                 echo json_encode(array("message"=>"No Users Found","status"=>400));
+                die;
             }
                 
         }
@@ -64,6 +68,33 @@
 
 
     //**Start of Delete Request******//
+    if($_SERVER['REQUEST_METHOD'] == 'DELETE')
+    {
+        if(isset($_GET['user_id']) && !empty($_GET['user_id']))
+        {
+
+            $query = "UPDATE  `users` SET `deleted_at` ='1' WHERE `user_id`=".$_GET['user_id'];
+            $result = $db->executeQuery($query);
+           
+            if($result)
+            {
+                echo json_encode(array("message"=>"User has been deleted successfully!","status"=>200));
+                die;
+            }else
+            {
+                echo json_encode(array("message"=>"No User Found","status"=>400));
+                die;
+            }
+
+
+        }else
+        {
+            
+            echo json_encode(array("message"=>"User id is required!","status"=>400));
+            die;
+
+        }
+    }
     //**End of Delete Request******//
 
 
