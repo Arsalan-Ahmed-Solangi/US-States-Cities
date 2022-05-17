@@ -7,7 +7,7 @@
 		private $db_host = "localhost";
 		private $db_user = "root";
 		private $db_pass = "";
-		private $db_name = "us-states-cities";
+		private $db_name = "us_states_cities";
 		private $connection = null;
 		private $query = null;
 		private $result = null;
