@@ -68,6 +68,8 @@
     	$result = $db->executeQuery($query);
     	if($result)
     	{
+
+
     	   echo json_encode(array('token'=>$token,'status'=>200));
     	   die;
     	}else
@@ -77,7 +79,6 @@
     	   die;	
     	}
     	//***End of Save Token********//
-
 
     }else
     {
